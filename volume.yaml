@@ -28,13 +28,13 @@ spec:
       csi.storage.k8s.io/fstype: ext4
     volumeHandle: projects/gcp-cloud-run-tests/zones/us-central1-c/disks/pvc-a9c023f2-d62b-11ef-8b6a-0d2c93415ead
   nodeAffinity:
-      required:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            - gke-my-cluster-devops-pool-7539bee5-bbh2
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: jenkins-node
+          operator: In
+          values:
+          - "true"
   storageClassName: standard-rwo
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem

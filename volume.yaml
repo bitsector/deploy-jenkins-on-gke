@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: pd.csi.storage.gke.io
+  finalizers:
+  - kubernetes.io/pv-protection
+  - external-attacher/pd-csi-storage-gke-io
+  name: pvc-a9c023f2-d62b-11ef-8b6a-0d2c93415ead
+  uid: 562f9c5c-d62d-11ef-8b6a-0d2c93415ead
+  labels:
+    type: jenkins-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: pvc-jenkins
+    namespace: devops-tool-suite
+    uid: c9a44c07-cffa-4cd8-b92b-15bac9a9b984
+  csi:
+    driver: pd.csi.storage.gke.io
+    volumeAttributes:
+      storage.kubernetes.io/csiProvisionerIdentity: 1660085000920-8081-pd.csi.storage.gke.io
+      csi.storage.k8s.io/fstype: ext4
+    volumeHandle: projects/gcp-cloud-run-tests/zones/us-central1-c/disks/pvc-a9c023f2-d62b-11ef-8b6a-0d2c93415ead
+  nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - gke-my-cluster-devops-pool-7539bee5-bbh2
+  storageClassName: standard-rwo
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+status:
+  phase: Bound
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-jenkins
+  namespace: devops-tool-suite
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  storageClassName: standard-rwo

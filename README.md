@@ -1,4 +1,7 @@
 # deploy-jenkins-on-gke
+
+[Full Article](https://bitsector.notion.site/Deploying-Jenkins-on-Google-Kubernetes-Engine-GKE-180cfe2b2f5c805bb5f0fce93ed5cd8a)
+
 ### Create a node pool specific for Jenkins
 ```bash
 gcloud container node-pools create devops-pool \

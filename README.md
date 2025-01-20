@@ -1,4 +1,4 @@
-# deploy-jenkins-on-gke
+# Deploy Jenkins on GKE
 
 [Full Article](https://bitsector.notion.site/Deploying-Jenkins-on-Google-Kubernetes-Engine-GKE-180cfe2b2f5c805bb5f0fce93ed5cd8a)
 
